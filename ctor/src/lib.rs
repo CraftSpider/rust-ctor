@@ -159,7 +159,7 @@ pub fn ctor(_attribute: TokenStream, function: TokenStream) -> TokenStream {
             }
             ;
 
-            pub fn #user_ident () { #ident; #user_ident; }
+            pub fn #user_ident () { std::hint::black_box(#ident); std::hint::black_box(#user_ident); }
         );
 
         eprintln!("{}", output);
