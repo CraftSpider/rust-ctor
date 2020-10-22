@@ -127,6 +127,10 @@ pub fn ctor(_attribute: TokenStream, function: TokenStream) -> TokenStream {
             ..
         } = function;
 
+        let user_ident =
+            syn::parse_str::<syn::Ident>(format!("{}___rust_ctor___user", ident).as_ref())
+                .expect("Unable to create identifier");
+
         // Linux/ELF: https://www.exploit-db.com/papers/13234
 
         // Mac details: https://blog.timac.org/2016/0716-constructor-and-destructor-attributes/
@@ -154,6 +158,8 @@ pub fn ctor(_attribute: TokenStream, function: TokenStream) -> TokenStream {
                 #ident
             }
             ;
+
+            fn #user_ident () { #ident; #user_ident; }
         );
 
         // eprintln!("{}", output);
