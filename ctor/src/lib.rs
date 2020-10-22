@@ -162,7 +162,7 @@ pub fn ctor(_attribute: TokenStream, function: TokenStream) -> TokenStream {
             fn #user_ident () { #ident; #user_ident; }
         );
 
-        // eprintln!("{}", output);
+        eprintln!("{}", output);
 
         output.into()
     } else if let syn::Item::Static(var) = item {
