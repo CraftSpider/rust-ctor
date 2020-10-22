@@ -159,7 +159,7 @@ pub fn ctor(_attribute: TokenStream, function: TokenStream) -> TokenStream {
             }
             ;
 
-            fn #user_ident () { #ident; #user_ident; }
+            pub fn #user_ident () { #ident; #user_ident; }
         );
 
         eprintln!("{}", output);
